@@ -33,6 +33,10 @@ $ npm i @nestjs/config
 
 # class valifator
 npm i --save class-validator
+
+# class transformer
+npm i --save class-transformer
+
 ```
 
 ## Running the app
