@@ -5,6 +5,7 @@ export type coursesDocument = Course & Document;
 
 @Schema()
 export class Course {
+    
     @Prop({type: Number})
     segNo: number
 

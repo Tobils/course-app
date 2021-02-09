@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, HttpException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, HttpException, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
@@ -9,12 +9,12 @@ export class CourseController {
   constructor(private readonly courseService: CourseService) {} 
 
   @Post()
+  @UsePipes(ValidationPipe)
   create(
-    @Body() course: Partial<Course>
-    // @Body() createCourseDto: CreateCourseDto
+    @Body() createCourseDto: CreateCourseDto
     ) : Promise<Course>
     {
-    return this.courseService.create(course);
+    return this.courseService.create(createCourseDto);
   }
 
   @Get()

@@ -13,7 +13,7 @@ export class CourseService {
     @InjectModel('Course')
     private courseModel: Model<coursesDocument>
 
-  async create(course: Partial<Course>): Promise<Course> {
+  async create(course: CreateCourseDto): Promise<Course> {
     this.logger.log(`This action adds a new course \n ${course} \n`);
     const newCourse = new this.courseModel(course);
     await newCourse.save();
