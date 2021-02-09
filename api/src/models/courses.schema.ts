@@ -1,7 +1,6 @@
 
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose'
-import { Document } from 'mongoose'
-
+import { Document,Mongoose, Types } from 'mongoose'
 export type coursesDocument = Course & Document;
 
 @Schema()
@@ -10,10 +9,10 @@ export class Course {
     segNo: number
 
     @Prop({type: String})
-    url: string
+    iconUrl: string
 
     @Prop({type: String})
-    coursesListIcon: string
+    courseListIcon: string
 
     @Prop({type: String})
     description: string
@@ -25,7 +24,7 @@ export class Course {
     category: string
 
     @Prop({type: Number})
-    lessonCount: number
+    lessonsCount: number
     
     @Prop({
         type: Boolean,

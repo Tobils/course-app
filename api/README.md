@@ -29,7 +29,10 @@
 ## Installation
 
 ```bash
-$ npm install
+$ npm i @nestjs/config
+
+# class valifator
+npm i --save class-validator
 ```
 
 ## Running the app
