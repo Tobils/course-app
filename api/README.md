@@ -46,6 +46,9 @@ npm i mongoose-unique-validator
 
 # jwt
 npm install jsonwebtoken
+
+# create middleware
+nest g  middleware middleware/get-user
 ```
 
 ## Running the app

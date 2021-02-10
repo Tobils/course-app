@@ -53,13 +53,13 @@ export class AuthService {
                     reject(new UnauthorizedException())
                 }
 
-                const authJWTtoken = jwt.sign({
+                const authJwtToken = jwt.sign({
                     id: user._id,
                     roles: user.roles
                 }, process.env.JWT_SECRET)
 
                 const payload = {
-                    access_token: authJWTtoken
+                    access_token: authJwtToken
                 }
 
                 resolve(payload)
