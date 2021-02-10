@@ -2,11 +2,8 @@ import { CanActivate, ExecutionContext, ForbiddenException, Injectable, Logger, 
 
 @Injectable()
 export class AuthorizationGuard implements CanActivate {
-
-    constructor(
-        private allowedRoles: string[],
         private logger = new Logger('autthorization-guard')
-    ){}
+        private allowedRoles: string[]
 
 
     canActivate(context: ExecutionContext): boolean {

@@ -3,8 +3,10 @@ import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedExceptio
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
     constructor(
-        private logger = new Logger('authentication-guard')
     ){}
+    
+    private logger = new Logger('authentication-guard')
+
     canActivate(context: ExecutionContext): boolean {
         const host = context.switchToHttp(),
         request = host.getRequest();
