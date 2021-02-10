@@ -52,23 +52,19 @@ export class AuthService {
                 if(!result){
                     reject(new UnauthorizedException())
                 }
-                resolve(user)
+
+                const authJWTtoken = jwt.sign({
+                    id: user._id,
+                    roles: user.roles
+                }, process.env.JWT_SECRET)
+
+                const payload = {
+                    access_token: authJWTtoken
+                }
+
+                resolve(payload)
             })
         })
-        
-        // return new Promise((resolve, reject) => {
-        //     password(loginDto.password).verifyAgainst(
-        //         user.passwordHash,
-        //         (err, verified) => {
-    
-        //             if( !verified){
-        //                 reject(new UnauthorizedException());
-        //             }
-
-
-        //         }
-        //     )
-        // });
     }
 
     async hashPassword(password: string) {
