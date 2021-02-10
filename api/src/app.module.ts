@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-// import { CoursesModule } from './courses/courses.module';
 import { CourseModule } from './course/course.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { CourseModule } from './course/course.module';
       process.env.MONGO_HOST
     ),
     CourseModule,
-    // CoursesModule, 
+    AuthModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

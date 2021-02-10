@@ -37,6 +37,12 @@ npm i --save class-validator
 # class transformer
 npm i --save class-transformer
 
+#bcrypt
+npm i bcrypt
+npm i -D @types/bcrypt
+
+# mongoose validator
+npm i mongoose-unique-validator
 ```
 
 ## Running the app
