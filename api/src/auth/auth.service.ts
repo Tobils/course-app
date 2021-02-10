@@ -5,6 +5,7 @@ import { Users, usersDocument } from 'src/models/users.schema';
 import { LoginDto } from './dto/login.dto';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
+import * as jwt from "jsonwebtoken";
 
 @Injectable()
 export class AuthService {
@@ -19,12 +20,10 @@ export class AuthService {
     async register(createUserDto: CreateUserDto) {
         this.logger.log(`create user data`);
         const passwordHash = await this.hashPassword(createUserDto.password);
-        this.logger.log(passwordHash) 
-
         const user = new this.userModel();
         user.email = createUserDto.email;
 
-        const validateUserMail = this.userModel.findOne({
+        const validateUserMail = await this.userModel.findOne({
             email: user.email
         })
 
@@ -37,17 +36,25 @@ export class AuthService {
         } else {
             return new HttpException("email has taken, please use others",HttpStatus.UNPROCESSABLE_ENTITY);
         }
-
-        
-
     }
 
     async login(loginDto: LoginDto){
-        // const user = await this.userModel.findOne({email:loginDto.email})
-        // if(!user){
-        //     this.logger.error(`User mail does not exist on the database`)
-        //     throw new UnauthorizedException();
-        // }
+        const user = await this.userModel.findOne({email:loginDto.email})
+        if(!user){
+            this.logger.error(`User mail does not exist on the database`)
+            throw new UnauthorizedException();
+        }
+
+        
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(loginDto.password,user.passwordHash, function(err, result) {
+                console.log(result)
+                if(!result){
+                    reject(new UnauthorizedException())
+                }
+                resolve(user)
+            })
+        })
         
         // return new Promise((resolve, reject) => {
         //     password(loginDto.password).verifyAgainst(

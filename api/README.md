@@ -43,6 +43,9 @@ npm i -D @types/bcrypt
 
 # mongoose validator
 npm i mongoose-unique-validator
+
+# jwt
+npm install jsonwebtoken
 ```
 
 ## Running the app
