@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AuthorizationGuard } from 'src/guards/authorization.guard';
 import { RolesGuard } from 'src/guards/roles.guard';
 import { Users, UsersSchema } from 'src/models/users.schema';
 import { AuthController } from './auth.controller';
